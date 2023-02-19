@@ -17,6 +17,12 @@ names = [
     for p in tif_paths
     if "thumb" not in p.name
 ]
+# Insert a filler value for one-channel datasets without a fourth component in
+# the filenames. The value doesn't matter since we only look for the number of
+# unique values in this position.
+for e in names:
+    if len(e) == 4:
+        e.insert(3, "w1")
 
 def nkey(x):
     return x[1:3]
